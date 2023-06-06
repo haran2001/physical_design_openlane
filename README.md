@@ -1,6 +1,8 @@
 # Advanced Physical Design 
 
-## Table of Contents
+ 
+
+## Table of Content
 <h3>Part 1: Inception of open-source EDA, OpenLANE and Sky130 PDK</h3>
 
 1. How to talk to computers
@@ -114,34 +116,73 @@ All tools used in this project are open sourced
 ## Methodology
 <h2>Part 1: Inception of open-source EDA, OpenLANE and Sky130 PDK</h2>
 
+Start the ORacle virtual machine using the VSD image.
+Start the required docker container by navigating to openlane work directory and typing docker.
+Files in the openlane work directory.
+![OpenLANE_configuration_files](./Images/2_all_config_files.png)
+Start OpenLANE b using he following command
+```./flow.tcl -interactive```
+
+prepare the design and load it into the openlane work space with an appropriate tag:
+```prep -design picorv32 -tag trail_run1```
+
+Play with he design by changing the clock period (within the work space only). Be sure to set back to defaul value once done, else might cause issues.
+
+![Changing the clock period](/Images/2_cange_clock_period.png)
+
+Run synthesis for  
+```run_synthesis -design picorv32a -tag trial_run1```
+
+
 <h2>Part 2: Good floorplan vs bad floorplan and Introduction to library cells</h2>
 
-![OpenLANE_configuration_files](./Images/2_all_config_files.png)
-![Changing the clock period](/Images/2_cange_clock_period.png)
+
 ![Using the overwrite switch](/Images/2_perp_overwrite.png)
-![Viewing placement in magic](/Images/2_placement.png)
 ![Using labels to specify design name and run tag for floor plan](/Images/2_run_floorplan_wih_labels.png)
 ![Application of switch parameters](/Images/2_swich_tag1.png)
+
 ![Floorplan viewed in magic](/Images/floorplan_maic.png)
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read ../floorplan/picorv32a.floorplan.def
+
+![Viewing placement in magic](/Images/2_placement.png)
+/home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read ../placement/picorv32a.placement.def
 
 <h2>Part 3: Design library cell using Magic Layout and Ngspice characterization</h2>
 
 ![Ploting Y against time](/Images/3__vs_time_plot.png)
-![Custom Inverer (sk130_inv) library cell](/Images/3_custom_inverter.png)
+
+![Custom Inverter (sk130_inv) library cell](/Images/3_custom_inverter.png)
+
 ![Spice file for inverter (sk130_inv)](/Images/3_exracted_spice_file.png)
+Move lef and lib files to src in designs/picorv32 
+cp <source> <desination>
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+
 ![Output of spice file](/Images/3_spice_output.png)
 
 <h2>Part 4: Pre-layout timing analysis and importance of good clock tree</h2>
 
-![4_added_lef_and_lib_files](/4_added_lef_and_lib_files.png)
+![4_added_lef_and_lib_files](Images/4_added_lef_and_lib_files.png)
 ![4_lef_lib_files_generaed_and_copied](/Images/4_lef_lib_files_generaed_and_copied.png)
 ![4_sky130_inv_in_merged_lef_file](/Images/4_sky130_inv_in_merged_lef_file.png)
+
+write_verilog designs/picorv32a/runs/trial_run3/results/synthesis/picorv32a.synthesis.def
+run_cts -design picorv32a -tag trial_run3 -overwrite
+
+read_lef designs/picorv32a/runs/trial_run3/tmp/merged.lef 
+read_lef designs/picorv32a/runs/trial_run3/results/cts/picorv32a.cts.def
+write_db picorv32_cts.db
+
 ![4_sta_after_cts](/Images/4_sta_after_cts.png)
+source scripts/sta.tcl
 
 <h2>Part 5: Final steps for RTL2GDS using OpenSTA</h2>
 
 ![5_after_pdn](/Images/5_after_pdn.png)
 ![5_extrac_parasitics](/Images/5_extrac_parasitics.png)
+ ```python3 --lef_file ../../../../../scripts/spef_extractor/main.py --def_file ../tmp/merged.lef ./routing/picorv32a.def```
+
 ![5_routing_completed](/Images/5_routing_completed.png)
 ![5_routing_visual_magic](/Images/5_routing_visual_magic.png)
 
