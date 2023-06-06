@@ -201,6 +201,7 @@ git clone https://github.com/nickson-jose/vsdstdcelldesign.git
 ```git 
 magic libs/sky130A.tech sk130_inv.mag
 ```
+![Custom Inverter (sk130_inv) library cell](/Images/3_custom_inverter.png)
 
 3. Run the following commands in the tkcon window to generate the spice file.
 ```git
@@ -211,52 +212,97 @@ magic libs/sky130A.tech sk130_inv.mag
 View the spice file in spa 
 ![Output of spice file](/Images/3_spice_output.png)
 
-
 4. Modify the spice file to plot the graph of y vs time.
 ![Modified spice file](/Images/3_modified_spice_file_for_plot.png)
 
-5. Plot Y vs time 
-![Ploting Y against time](/Images/3__vs_time_plot.png)
+5. Plot Y vs time and view he result in ngspice
+ ```git
+ ngspice sky130_inv.spice
+ ```
+ ![Ploting Y against time](/Images/3__vs_time_plot.png)
 
-![Custom Inverter (sk130_inv) library cell](/Images/3_custom_inverter.png)
 
+<h2>Part 4: Pre-layout timing analysis and importance of good clock tree</h2>
 
+1. Modify the grid using the tkcon window and enerate the lef file. 
+```git
+grid 0.46um 0.34um 0.23um 0.17um
+lef write
+```
 
-6. Move lef and lib files to src in designs/picorv32/src
+2. Move lef and lib files to src in designs/picorv32/src
 ```git
 cp <source> <desination>
 ```
+![4_lef_lib_files_generaed_and_copied](/Images/4_lef_lib_files_generaed_and_copied.png)
 
-7. Include the lib and lef files into openlane.
+3. Add the lef and lib files as shown below.
+![4_added_lef_and_lib_files](Images/4_added_lef_and_lib_files.png)
+
+4. Include the lib and lef files into openlane before running synthesis.
 ```git
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 ```
 
-
-<h2>Part 4: Pre-layout timing analysis and importance of good clock tree</h2>
-
-![4_added_lef_and_lib_files](Images/4_added_lef_and_lib_files.png)
-![4_lef_lib_files_generaed_and_copied](/Images/4_lef_lib_files_generaed_and_copied.png)
+5. Verify that the inverer is present in he mereged lef file.
 ![4_sky130_inv_in_merged_lef_file](/Images/4_sky130_inv_in_merged_lef_file.png)
 
-write_verilog designs/picorv32a/runs/trial_run3/results/synthesis/picorv32a.synthesis.def
-run_cts -design picorv32a -tag trial_run3 -overwrite
+6. Open OpenROAD. It has openSTA integraed into it. Then run the custom pre_sta.conf file or the sta.tcl file in scripts.
+```git
+openROAD
+sta pre_sta.conf
+(OR)
+source scripts/pre_sta.conf
+```
 
+7. Update verilog and run_cts.
+```
+write_verilog designs/picorv32a/runs/trial_run1/results/synthesis/picorv32a.synthesis.def
+run_cts -design picorv32a -tag trial_run3 -overwrite
+```
+8. Create a db to store the progress, so it can be resued later.
+```git
 read_lef designs/picorv32a/runs/trial_run3/tmp/merged.lef 
 read_lef designs/picorv32a/runs/trial_run3/results/cts/picorv32a.cts.def
 write_db picorv32_cts.db
-
+```
 ![4_sta_after_cts](/Images/4_sta_after_cts.png)
-source scripts/sta.tcl
 
 <h2>Part 5: Final steps for RTL2GDS using OpenSTA</h2>
 
-![5_after_pdn](/Images/5_after_pdn.png)
-![5_extrac_parasitics](/Images/5_extrac_parasitics.png)
- ```python3 --lef_file ../../../../../scripts/spef_extractor/main.py --def_file ../tmp/merged.lef ./routing/picorv32a.def```
+1. Run the following comands before creaing the PDN.
+```
+git
+openroad
+read_db picorv32_cts.db  
+read_liberty $::env(LIB_SYNTH_COMPLETE) 
+link_design picorv32a
+read_sdc ...../src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
 
+2. Create the power distribuion network.
+```git
+gen_pdn
+```
+![5_after_pdn](/Images/5_after_pdn.png)
+
+3. Exract parasitics.
+ ```git
+ python3 --lef_file ../../../../../scripts/spef_extractor/main.py --def_file ../tmp/merged.lef ./routing/picorv32a.def
+ ```
+![5_extrac_parasitics](/Images/5_extrac_parasitics.png)
+4. Complete rouing 
+```git
+run_routing -design picorv32a -tag trial_run1 -overwrite
+```
 ![5_routing_completed](/Images/5_routing_completed.png)
+5. Generate gds file using magic
+```git
+run_magic -design picorv32a -tag trial_run1 -overwrite
+```
 ![5_routing_visual_magic](/Images/5_routing_visual_magic.png)
 
 
