@@ -5,37 +5,39 @@
 ## Table of Content
 <h3>Introduction</h3>
 <h3>Methodology</h3>
-<h4>Part 1: Inception of open-source EDA, OpenLANE and Sky130 PDK</h4>
+ <h4>Part 1: Inception of open-source EDA, OpenLANE and Sky130 PDK</h4>
 
- 1. How to talk to computers
- 2. SoC design and OpenLANE
- 3. Starting RISC-V SoC Reference design
- 4. Get familiar to open-source EDA tools
+  1. How to talk to computers
+  2. SoC design and OpenLANE
+  3. Starting RISC-V SoC Reference design
+  4. Get familiar to open-source EDA tools
 
-<h4>Part 2: Good floorplan vs bad floorplan and Introduction to library cells</h4>
- 1. Chip Floor planning considerations
- 2. Library Binding and Placement
- 3. Cell design and characterization flows
- 4. General timing characterization parameters
+ <h4>Part 2: Good floorplan vs bad floorplan and Introduction to library cells</h4>
+ 
+  1. Chip Floor planning considerations
+  2. Library Binding and Placement
+  3. Cell design and characterization flows
+  4. General timing characterization parameters
 
-<h4>Part 3: Design library cell using Magic Layout and Ngspice characterization</h4>
+ <h4>Part 3: Design library cell using Magic Layout and Ngspice characterization</h4>
 
-1. Labs for CMOS inverter ngspice simulations
-2. Inception of Layout – CMOS fabrication process
-3. Sky130 Tech File Labs
+  1. Labs for CMOS inverter ngspice simulations
+  2. Inception of Layout – CMOS fabrication process
+  3. Sky130 Tech File Labs
 
-<h4>Part 4: Pre-layout timing analysis and importance of good clock tree</h4>
+ <h4>Part 4: Pre-layout timing analysis and importance of good clock tree</h4>
 
-1. Timing modelling using delay tables
-2. Timing analysis with ideal clocks using openSTA
-3. Clock tree synthesis TritonCTS and signal integrity
-4. Timing analysis with real clocks using openSTA
+  1. Timing modelling using delay tables
+  2. Timing analysis with ideal clocks using openSTA
+  3. Clock tree synthesis TritonCTS and signal integrity
+  4. Timing analysis with real clocks using openSTA
 
-<h4>Part 5: Final steps for RTL2GDS using OpenSTA</h4>
+ <h4>Part 5: Final steps for RTL2GDS using OpenSTA</h4>
 
-1. Routing and design rule check (DRC)
-2. PNR interactive flow tutorial
+  1. Routing and design rule check (DRC)
+  2. PNR interactive flow tutorial
 
+<h3>Acknowledgements</h3>
 
 ## Introduction
 This project is a product of the 5 day workshop conducted by VLSI Sstem Design on Advanced Physical Design. The focus is to complete the RTL to GDSII flow for PicoRV32 which is RISCV based core. The following steps will be carrried out:
@@ -118,29 +120,33 @@ All tools used in this project are open sourced
 <h2>Part 1: Inception of open-source EDA, OpenLANE and Sky130 PDK</h2>
 
 1. Start the Oracle virtual machine using the VSD image.
-2. Start the required docker container by navigating to openlane work directory and typing docker.
+
+2. Navigate to openlane work directory.
 ```git
 cd Desktop/work/tools/openlane_working_dir/openlane
-docker
 ```
-Files in the openlane work directory.
+ Files in the openlane work directory.
 ![OpenLANE_configuration_files](./Images/2_all_config_files.png)
 
-Start OpenLANE by using the following command
+3. Open the container by typing docker.
+```git
+docker
+```
+
+4. Start OpenLANE by using the following command
 ```git
 ./flow.tcl -interactive
 ```
 
-Prepare the design and load it into the openlane work space with an appropriate tag:
+5. Prepare the design and load it into the openlane work space with an appropriate tag:
 ```git
 prep -design picorv32 -tag trail_run1
 ```
 
-Play with the design by changing the clock period (within the work space only). Be sure to set back to defaul value once done, else might cause issues.
-
+6. Play with the design by changing the clock period (within the work space only). Be sure to set back to defaul value once done, else might cause issues.
 ![Changing the clock period](/Images/2_cange_clock_period.png)
 
-Run synthesis using:  
+7. Run synthesis using:  
 ```git
 run_synthesis -design picorv32a -tag trial_run1
 ```
