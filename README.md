@@ -125,22 +125,25 @@ All tools used in this project are open sourced
 ![Floorplan viewed in magic](/Images/floorplan_maic.png)
 
 <h2>Part 3: Design library cell using Magic Layout and Ngspice characterization</h2>
+
 ![Ploting Y against time](/Images/3__vs_time_plot.png)
 ![Custom Inverer (sk130_inv) library cell](/Images/3_custom_inverter.png)
 ![Spice file for inverter (sk130_inv)](/Images/3_exracted_spice_file.png)
 ![Output of spice file](/Images/3_spice_output.png)
 
 <h2>Part 4: Pre-layout timing analysis and importance of good clock tree</h2>
-![](/4_added_lef_and_lib_files.png)
-![](/Images/4_lef_lib_files_generaed_and_copied.png)
-![](/Images/4_sky130_inv_in_merged_lef_file.png)
-![](/Images/4_sta_after_cts.png)
+
+![4_added_lef_and_lib_files](/4_added_lef_and_lib_files.png)
+![4_lef_lib_files_generaed_and_copied](/Images/4_lef_lib_files_generaed_and_copied.png)
+![4_sky130_inv_in_merged_lef_file](/Images/4_sky130_inv_in_merged_lef_file.png)
+![4_sta_after_cts](/Images/4_sta_after_cts.png)
 
 <h2>Part 5: Final steps for RTL2GDS using OpenSTA</h2>
-![](/Images/5_after_pdn.png)
-![](/Images/5_extrac_parasitics.png)
-![](/Images/5_routing_completed.png)
-![](/Images/5_routing_visual_magic.png)
+
+![5_after_pdn](/Images/5_after_pdn.png)
+![5_extrac_parasitics](/Images/5_extrac_parasitics.png)
+![5_routing_completed](/Images/5_routing_completed.png)
+![5_routing_visual_magic](/Images/5_routing_visual_magic.png)
 
 
 ## Acknowledgements
