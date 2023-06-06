@@ -118,6 +118,8 @@ All tools used in this project are open sourced
 
 Start the Oracle virtual machine using the VSD image.
 Start the required docker container by navigating to openlane work directory and typing docker.
+```cd Desktop/work/tools/openlane_working_dir/openlane```
+```docker```
 Files in the openlane work directory.
 ![OpenLANE_configuration_files](./Images/2_all_config_files.png)
 
@@ -159,18 +161,34 @@ View the layout in magic after running floorplan using:
 ```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read ../placement/picorv32a.placement.def```
 ![Viewing placement in magic](/Images/2_placement.png)
 
+<h2>Part 3: Design library cell using Magic Layout and Ngspice characterization</h2>
+
 Standard Cell Design
 The typical standard cell design flow consists of 3 elements :
 - Inputs - PDKs , DRC & LVS rules, SPICE models, library & user-defined specs
 - Design Steps - Circuit design, layout design, characterization
 - Outputs - CDL, GDSII, LEF, .cir
 
-<h2>Part 3: Design library cell using Magic Layout and Ngspice characterization</h2>
+Clone the following reposiory:
+```git clone https://github.com/nickson-jose/vsdstdcelldesign.git```
+It contains the sky130_inv.mag file that defines the custom invereter we'll add to our project.
+View the design in magic using he tech and mag files as follows:
+```magic libs/sky130A.tech sk130_inv.mag```
+
+Run the following commands in the tkcon window to generate the spice file.
+```git
+1. extract all
+2. ext2spice cthresh 0 rthresh 0
+3. ext2spice
+```
+
+![Modified spice file](/Images/3__vs_time_plot.png)
 
 ![Ploting Y against time](/Images/3__vs_time_plot.png)
 
 ![Custom Inverter (sk130_inv) library cell](/Images/3_custom_inverter.png)
 
+designs/src
 ![Spice file for inverter (sk130_inv)](/Images/3_exracted_spice_file.png)
 Move lef and lib files to src in designs/picorv32 
 cp <source> <desination>
