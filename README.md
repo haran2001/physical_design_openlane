@@ -116,36 +116,54 @@ All tools used in this project are open sourced
 ## Methodology
 <h2>Part 1: Inception of open-source EDA, OpenLANE and Sky130 PDK</h2>
 
-Start the ORacle virtual machine using the VSD image.
+Start the Oracle virtual machine using the VSD image.
 Start the required docker container by navigating to openlane work directory and typing docker.
 Files in the openlane work directory.
 ![OpenLANE_configuration_files](./Images/2_all_config_files.png)
-Start OpenLANE b using he following command
+
+Start OpenLANE by using the following command
 ```./flow.tcl -interactive```
 
-prepare the design and load it into the openlane work space with an appropriate tag:
+Prepare the design and load it into the openlane work space with an appropriate tag:
 ```prep -design picorv32 -tag trail_run1```
 
-Play with he design by changing the clock period (within the work space only). Be sure to set back to defaul value once done, else might cause issues.
+Play with the design by changing the clock period (within the work space only). Be sure to set back to defaul value once done, else might cause issues.
 
 ![Changing the clock period](/Images/2_cange_clock_period.png)
 
-Run synthesis for  
+Run synthesis using:  
 ```run_synthesis -design picorv32a -tag trial_run1```
 
 
 <h2>Part 2: Good floorplan vs bad floorplan and Introduction to library cells</h2>
 
 
+Load the design using prep. Select the design Use the overwrite switch to select the design and tag you want to load into the design.
+```prep -design picorv32 -tag trail_run1```
 ![Using the overwrite switch](/Images/2_perp_overwrite.png)
+
+Run floorplan using:
+```run_floorplan -design picorv32a -tag trial_run1```
 ![Using labels to specify design name and run tag for floor plan](/Images/2_run_floorplan_wih_labels.png)
 ![Application of switch parameters](/Images/2_swich_tag1.png)
 
+View the layout in magic after running floorplan using:
+```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read ../floorplan/picorv32a.floorplan.def```
 ![Floorplan viewed in magic](/Images/floorplan_maic.png)
-magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read ../floorplan/picorv32a.floorplan.def
 
+
+Run floorplan using:
+```run_placement -design picorv32a -tag trial_run1```
+
+View the layout in magic after running floorplan using:
+```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read ../placement/picorv32a.placement.def```
 ![Viewing placement in magic](/Images/2_placement.png)
-/home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read ../placement/picorv32a.placement.def
+
+Standard Cell Design
+The typical standard cell design flow consists of 3 elements :
+- Inputs - PDKs , DRC & LVS rules, SPICE models, library & user-defined specs
+- Design Steps - Circuit design, layout design, characterization
+- Outputs - CDL, GDSII, LEF, .cir
 
 <h2>Part 3: Design library cell using Magic Layout and Ngspice characterization</h2>
 
