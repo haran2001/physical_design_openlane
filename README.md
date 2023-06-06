@@ -160,26 +160,25 @@ prep -design picorv32 -tag trail_run1
 ```
 ![Using the overwrite switch](/Images/2_perp_overwrite.png)
 
-Run floorplan using:
+2. Run floorplan using:
 ```git
 run_floorplan -design picorv32a -tag trial_run1
 ```
 ![Using labels to specify design name and run tag for floor plan](/Images/2_run_floorplan_wih_labels.png)
-![Application of switch parameters](/Images/2_swich_tag1.png)
 
-View the layout in magic after running floorplan using:
+3. View the layout in magic after running floorplan using:
 ```git
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read ../floorplan/picorv32a.floorplan.def
 ```
 ![Floorplan viewed in magic](/Images/floorplan_maic.png)
 
 
-Run floorplan using:
+4. Run placement using:
 ```git
 run_placement -design picorv32a -tag trial_run1
 ```
 
-View the layout in magic after running floorplan using:
+5. View the layout in magic after running placement using:
 ```git
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read ../placement/picorv32a.placement.def
 ```
@@ -193,38 +192,47 @@ The typical standard cell design flow consists of 3 elements :
 - Design Steps - Circuit design, layout design, characterization
 - Outputs - CDL, GDSII, LEF, .cir
 
-Clone the following reposiory:
+1. Clone the following reposiory. It contains the sky130_inv.mag file that defines the custom invereter we'll add to our project.
 ```git
 git clone https://github.com/nickson-jose/vsdstdcelldesign.git
 ```
-It contains the sky130_inv.mag file that defines the custom invereter we'll add to our project.
-View the design in magic using he tech and mag files as follows:
+
+2. View the design in magic using he tech and mag files as follows:
 ```git 
 magic libs/sky130A.tech sk130_inv.mag
 ```
 
-Run the following commands in the tkcon window to generate the spice file.
+3. Run the following commands in the tkcon window to generate the spice file.
 ```git
 1. extract all
 2. ext2spice cthresh 0 rthresh 0
 3. ext2spice
 ```
+View the spice file in spa 
+![Output of spice file](/Images/3_spice_output.png)
 
 
-
+4. Modify the spice file to plot the graph of y vs time.
 ![Modified spice file](/Images/3_modified_spice_file_for_plot.png)
+
+5. Plot Y vs time 
 ![Ploting Y against time](/Images/3__vs_time_plot.png)
 
 ![Custom Inverter (sk130_inv) library cell](/Images/3_custom_inverter.png)
 
-designs/src
-![Spice file for inverter (sk130_inv)](/Images/3_exracted_spice_file.png)
-Move lef and lib files to src in designs/picorv32 
+
+
+6. Move lef and lib files to src in designs/picorv32/src
+```git
 cp <source> <desination>
+```
+
+7. Include the lib and lef files into openlane.
+```git
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
+```
 
-![Output of spice file](/Images/3_spice_output.png)
 
 <h2>Part 4: Pre-layout timing analysis and importance of good clock tree</h2>
 
