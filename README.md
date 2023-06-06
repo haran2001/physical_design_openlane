@@ -34,7 +34,7 @@
 
 
 ## Introduction
-RTL to GDSII flow for a picorv32 which is RISCV based core. The objecive will be to use he RTL code and implement the following steps to obtain the GDS file.
+This project is a product of the 5 day workshop conducted by VLSI Sstem Design on Advanced Physical Design. The focus is to complete the RTL to GDSII flow for PicoRV32 which is RISCV based core. The following steps will be carrried out:
 + Synthesis
 + Floorplan
 + Placement
@@ -43,44 +43,49 @@ RTL to GDSII flow for a picorv32 which is RISCV based core. The objecive will be
 
 ## Tools Used
 All tools used in this project are open sourced
-+ OpenLANE and OpenROAD: OpenLANE is an automated RTL to GDSII (Registered Transfer Level to Graphic Data System version II) flow that is built on top of several open source tools, aiming to be a fully automated ASIC (Application-Specific Integrated Circuit) flow. OpenLANE is intended to produce clean GDSII without any human intervention, although, there is an interactive mode available to allow for custom modifications and design tuning. The OpenLANE flow involves several stages, including synthesis, floorplanning, placement, routing, and checking for manufacturability (DRC). Here's a brief overview of these stages:
++ OpenLANE: It is an automated RTL to GDSII (Registered Transfer Level to Graphic Data System version II) flow that is built on top of several open source tools, aiming to be a fully automated ASIC (Application-Specific Integrated Circuit) flow. OpenLANE is intended to produce clean GDSII without any human intervention, although, there is an interactive mode available to allow for custom modifications and design tuning. The OpenLANE flow involves several stages, including synthesis, floorplanning, placement, routing, and checking for manufacturability (DRC). Here's a brief overview of these stages:
 
-- **Synthesis:** The input RTL design (in Verilog, for instance) is transformed into a gate-level representation. Yosys is the tool used for this.
+  - **Synthesis:** The input RTL design (in Verilog, for instance) is transformed into a gate-level representation. Yosys is the tool used for this.
 
-- **Floorplanning:** Arrangement of macro blocks and determining the shape and size of the chip. OpenROAD is one of the tools used for this.
+  - **Floorplanning:** Arrangement of macro blocks and determining the shape and size of the chip. OpenROAD is one of the tools used for this.
 
-- **Placement:** Determines the exact location of standard cells in the layout. OpenROAD is again the tool used for this.
+  - **Placement:** Determines the exact location of standard cells in the layout. OpenROAD is again the tool used for this.
 
-- **Routing:** The interconnections between the cells are created, forming a complete network of paths for the design.
+  - **Routing:** The interconnections between the cells are created, forming a complete network of paths for the design.
 
-- **DRC (Design Rule Checking):** The final layout is checked against a set of design rules to ensure it can be accurately manufactured.
+  - **DRC (Design Rule Checking):** The final layout is checked against a set of design rules to ensure it can be accurately manufactured.
+ 
+ 
++ SKY130 PDK: The Sky130 Process Design Kit (PDK) is a significant offering from SkyWater Technology. It's known as the world's first manufacturable, open-source PDK. A PDK (Process Design Kit) is essential for chip design as it describes how a particular fabrication technology can be used for designing integrated circuits. SkyWater's Sky130 PDK provides a 130-nanometer fabrication process that can be used to design a wide range of ICs (Integrated Circuits). It is particularly notable because of its open-source nature. Prior to the release of Sky130 PDK, virtually all PDKs were proprietary, making this a major step towards enabling open-source hardware and democratizing IC design. Key aspects of the Sky130 PDK include:
+  - **130-nanometer process:** The 130nm process allows for reasonable performance and power levels while remaining accessible for smaller design teams.
+  
+  - **Open-source:** The Sky130 PDK is open-source and available for anyone to use. This is a major departure from traditional PDKs, which are typically proprietary.
+  
+  - **Versatility:** The Sky130 PDK is suitable for a wide range of designs, including mixed-signal and analog, radio frequency (RF), and ultra-low power applications.
+  
+  - **Manufacturable:** The Sky130 PDK is not just a theoretical or educational tool; it can be used to create designs that can actually be manufactured by SkyWater's foundry services.
+  
+  
++ Magic: Magic is a venerable VLSI (Very-Large-Scale Integration) layout tool, written in the 1980s at the University of California, Berkeley. It is widely known in academia for its interactive mode, which allowed designers to directly manipulate design layouts. Key Features of Magic:
 
-OpenLANE is part of the larger OpenROAD (Open Resilient Design) project that aims to provide a fully autonomous, open-source tool chain for digital layout generation across die, package and board, with initial emphasis on the RTL-to-GDSII phase of system-on-chip design. This project aims to improve productivity of hardware design and lower the cost of silicon chips by providing open source tools and encouraging community participation.
-+ SKY130 PDK
-+ Magic
+  + **IC Layout:** Magic is a key tool in designing the layout of integrated circuits (ICs) in VLSI.
+
+  + **Technology-Agnostic:** It is adaptable to various IC fabrication technology rules, such as SCMOS, and has been updated for deep sub-micron designs.
+
+  + **Interactive:** Magic is not just a drawing tool, it's an intelligent layout editor. As the user manipulates the design layout, Magic continuously performs design rule checking (DRC) to ensure that the layout obeys the specific rules of the fabrication process.
+
+  + **Extensible:** Magic is extensible and has been used as a base for several IC design automation tools.
+
+  + **CIF and GDS Conversion:** Magic supports CIF (Caltech Intermediate Form) and GDS (Graphic Data System) formats, which are common formats for IC design files.
+
+  + **Open Source:** Magic is open-source software, which means it's freely available for use and modification.
+
+While Magic is quite old compared to many of today's EDA (Electronic Design Automation) tools, it is still used in education and research due to its ease of use, interactive capabilities, and extensibility.
+
 + Ngspice
 + OpenSTA
 
-## Methodology
-<h2>Part 1: Inception of open-source EDA, OpenLANE and Sky130 PDK</h2>
 
-<h2>Part 2: Good floorplan vs bad floorplan and Introduction to library cells</h2>
-![All the config files](# Advanced Physical Design (Openlane)
-
-## Introduction
-RTL to GDSII flow for a picorv32 which is RISCV based core. The objecive will be to use he RTL code and implement the following steps to obtain the GDS file.
-+ Synthesis
-+ Floorplan
-+ Placement
-+ Clock Tree Synthesis
-+ Routing
-
-All tools used in this project are open sourced
-+ OpenLANE
-+ SKY130 PDK
-+ Magic
-+ Ngspice
-+ OpenSTA
 
 ## Methodology
 <h2>Part 1: Inception of open-source EDA, OpenLANE and Sky130 PDK</h2>
