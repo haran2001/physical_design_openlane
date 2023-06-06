@@ -116,33 +116,32 @@ All tools used in this project are open sourced
 
 <h2>Part 2: Good floorplan vs bad floorplan and Introduction to library cells</h2>
 
-![The OpenLANE configuration files](/workspaces/physical_design_openlane/Images/2_all_config_files.png)
-![](/workspaces/physical_design_openlane/Images/2_cange_clock_period.png)
-![](/workspaces/physical_design_openlane/Images/2_perp_overwrite.png)
-![](/workspaces/physical_design_openlane/Images/2_placement.png)
-![](/workspaces/physical_design_openlane/Images/2_run_floorplan_wih_labels.png)
-![](/workspaces/physical_design_openlane/Images/2_swich_tag1.png)
-![](/workspaces/physical_design_openlane/Images/2_switch_tag.png)
-![](/workspaces/physical_design_openlane/Images/floorplan_maic.png)
+![OpenLANE_configuration_files](./Images/2_all_config_files.png)
+![Changing the clock period](/Images/2_cange_clock_period.png)
+![Using the overwrite switch](/Images/2_perp_overwrite.png)
+![Viewing placement in magic](/Images/2_placement.png)
+![Using labels to specify design name and run tag for floor plan](/Images/2_run_floorplan_wih_labels.png)
+![Application of switch parameters](/Images/2_swich_tag1.png)
+![Floorplan viewed in magic](/Images/floorplan_maic.png)
 
 <h2>Part 3: Design library cell using Magic Layout and Ngspice characterization</h2>
-![](/workspaces/physical_design_openlane/Images/3__vs_time_plot.png)
-![](/workspaces/physical_design_openlane/Images/3_custom_inverter.png)
-![](/workspaces/physical_design_openlane/Images/3_exracted_spice_file.png)
-![](/workspaces/physical_design_openlane/Images/3_spice_output.png)
+![Ploting Y against time](/Images/3__vs_time_plot.png)
+![Custom Inverer (sk130_inv) library cell](/Images/3_custom_inverter.png)
+![Spice file for inverter (sk130_inv)](/Images/3_exracted_spice_file.png)
+![Output of spice file](/Images/3_spice_output.png)
 
 <h2>Part 4: Pre-layout timing analysis and importance of good clock tree</h2>
-![](/workspaces/physical_design_openlane/Images/4_added_lef_and_lib_files.png)
-![](/workspaces/physical_design_openlane/Images/4_lef_lib_files_generaed_and_copied.png)
-![](/workspaces/physical_design_openlane/Images/4_pre_sta_conf_report.png)
-![](/workspaces/physical_design_openlane/Images/4_sky130_inv_in_merged_lef_file.png)
-![](/workspaces/physical_design_openlane/Images/4_sta_after_cts.png)
+![](/4_added_lef_and_lib_files.png)
+![](/Images/4_lef_lib_files_generaed_and_copied.png)
+![](/Images/4_pre_sta_conf_report.png)
+![](/Images/4_sky130_inv_in_merged_lef_file.png)
+![](/Images/4_sta_after_cts.png)
 
 <h2>Part 5: Final steps for RTL2GDS using OpenSTA</h2>
-![](/workspaces/physical_design_openlane/Images/5_after_pdn.png)
-![](/workspaces/physical_design_openlane/Images/5_extrac_parasitics.png)
-![](/workspaces/physical_design_openlane/Images/5_routing_completed.png)
-![](/workspaces/physical_design_openlane/Images/5_routing_visual_magic.png)
+![](/Images/5_after_pdn.png)
+![](/Images/5_extrac_parasitics.png)
+![](/Images/5_routing_completed.png)
+![](/Images/5_routing_visual_magic.png)
 
 
 ## Acknowledgements
