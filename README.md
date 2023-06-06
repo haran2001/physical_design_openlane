@@ -3,8 +3,8 @@
  
 
 ## Table of Content
-<h3>Introduction</h3>
-<h3>Methodology</h3>
+<h3>1. Introduction</h3>
+<h3>2. Methodology</h3>
  <h4>Part 1: Inception of open-source EDA, OpenLANE and Sky130 PDK</h4>
 
   1. How to talk to computers
@@ -37,7 +37,7 @@
   1. Routing and design rule check (DRC)
   2. PNR interactive flow tutorial
 
-<h3>Acknowledgements</h3>
+<h3>3. Acknowledgements</h3>
 
 ## Introduction
 This project is a product of the 5 day workshop conducted by VLSI Sstem Design on Advanced Physical Design. The focus is to complete the RTL to GDSII flow for PicoRV32 which is RISCV based core. The following steps will be carrried out:
@@ -150,11 +150,11 @@ prep -design picorv32 -tag trail_run1
 ```git
 run_synthesis -design picorv32a -tag trial_run1
 ```
-
+![synthesis completec](/Images/2_synthesis_completed.png)
 
 <h2>Part 2: Good floorplan vs bad floorplan and Introduction to library cells</h2>
 
-Load the design using prep. Select the design Use the overwrite switch to select the design and tag you want to load into the design.
+1. Load the design using the prep command. Select the design you want to use the overwrite switch to select the design and tag you want to load into the design.
 ```git
 prep -design picorv32 -tag trail_run1
 ```
@@ -210,8 +210,9 @@ Run the following commands in the tkcon window to generate the spice file.
 3. ext2spice
 ```
 
-![Modified spice file](/Images/3__vs_time_plot.png)
 
+
+![Modified spice file](/Images/3_modified_spice_file_for_plot.png)
 ![Ploting Y against time](/Images/3__vs_time_plot.png)
 
 ![Custom Inverter (sk130_inv) library cell](/Images/3_custom_inverter.png)
@@ -256,4 +257,4 @@ source scripts/sta.tcl
 This project wouldn't have been possible without the help of:
 
 - [Kunal Ghosh](https://github.com/kunalg123) - Co-founder VSD Corp. Pvt. Ltd 
-- [Nickson Hose](https://github.com/nickson-jose/) - Teaching Assistant VSD Corp. Pvt. Ltd) (link to their GitHub or website)
+- [Nickson Hose](https://github.com/nickson-jose/) - Teaching Assistant VSD Corp. Pvt. Ltd)
