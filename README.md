@@ -213,7 +213,9 @@ View the spice file in spa
 ![Output of spice file](/Images/3_spice_output.png)
 
 4. Modify the spice file to plot the graph of y vs time.
+
 ![Modified spice file](/Images/3_modified_spice_file_for_plot.png)
+
 
 5. Plot Y vs time and view he result in ngspice
  ```git
