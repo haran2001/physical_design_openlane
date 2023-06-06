@@ -133,7 +133,6 @@ All tools used in this project are open sourced
 <h2>Part 4: Pre-layout timing analysis and importance of good clock tree</h2>
 ![](/4_added_lef_and_lib_files.png)
 ![](/Images/4_lef_lib_files_generaed_and_copied.png)
-![](/Images/4_pre_sta_conf_report.png)
 ![](/Images/4_sky130_inv_in_merged_lef_file.png)
 ![](/Images/4_sta_after_cts.png)
 
