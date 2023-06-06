@@ -294,11 +294,13 @@ gen_pdn
  python3 --lef_file ../../../../../scripts/spef_extractor/main.py --def_file ../tmp/merged.lef ./routing/picorv32a.def
  ```
 ![5_extrac_parasitics](/Images/5_extrac_parasitics.png)
+
 4. Complete rouing 
 ```git
 run_routing -design picorv32a -tag trial_run1 -overwrite
 ```
 ![5_routing_completed](/Images/5_routing_completed.png)
+
 5. Generate gds file using magic
 ```git
 run_magic -design picorv32a -tag trial_run1 -overwrite
