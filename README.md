@@ -237,7 +237,6 @@ cp <source> <desination>
 ![4_lef_lib_files_generaed_and_copied](/Images/4_lef_lib_files_generaed_and_copied.png)
 
 3. Add the lef and lib files as shown below.
-
 ![4_added_lef_and_lib_files](Images/4_added_lef_and_lib_files.png)
 
 4. Include the lib and lef files into openlane before running synthesis.
@@ -247,7 +246,6 @@ add_lefs -src $lefs
 ```
 
 5. Verify that the inverer is present in he mereged lef file.
-
 ![4_sky130_inv_in_merged_lef_file](/Images/4_sky130_inv_in_merged_lef_file.png)
 
 6. Open OpenROAD. It has openSTA integraed into it. Then run the custom pre_sta.conf file or the sta.tcl file in scripts.
