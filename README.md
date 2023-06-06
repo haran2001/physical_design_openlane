@@ -203,14 +203,12 @@ magic libs/sky130A.tech sk130_inv.mag
 ```
 ![Custom Inverter (sk130_inv) library cell](/Images/3_custom_inverter.png)
 
-3. Run the following commands in the tkcon window to generate the spice file.
+3. Run the following commands in the tkcon window to generate the spice file. 
 ```git
 1. extract all
 2. ext2spice cthresh 0 rthresh 0
 3. ext2spice
 ```
-View the spice file in spa 
-![Output of spice file](/Images/3_spice_output.png)
 
 4. Modify the spice file to plot the graph of y vs time.
 
